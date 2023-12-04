@@ -10,5 +10,3 @@ services:
       - chrome-server
   chrome-server:
     image: selenium/standalone-chrome:119.0
-    ports: 
-    - "7900:7900"
