@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    command: rails s -b 0.0.0.0
+    depends_on:
+      - chrome-server
+  chrome-server:
+    image: selenium/standalone-chrome:119.0
+    ports: 
+    - "7900:7900"
