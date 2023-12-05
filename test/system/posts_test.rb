@@ -13,7 +13,7 @@ class PostsTest < ApplicationSystemTestCase
 
   test "should create post" do
     visit posts_url
-    click_on "New post"
+    click_on "Ne post"
 
     fill_in "Body", with: @post.body
     fill_in "Title", with: @post.title
