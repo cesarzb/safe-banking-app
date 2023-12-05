@@ -5,6 +5,7 @@ on:
     branches:
       - main
 
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -25,3 +26,18 @@ jobs:
       - name: Run Tests
         run: |
           docker-compose run --rm web bin/rails test:system
+
+      - name: The job has failed
+        uses: stefanstranger/azuredevops-bug-action@1.1
+        if: failure()
+        with:
+          OrganizationName: "MWO-Bernard"
+          PAT: "PAT"
+          ProjectName: "Portal e-commerce"
+          AreaPath: "Portal e-commerce\\Automation"
+          IterationPath: "Portal e-commerce"
+          GithubToken: "GithubToken"
+          WorkflowFileName: "error.yml"
+        env:
+          PAT: ${{ secrets.PAT}}
+          GithubToken: ${{ secrets.githubtoken}}
