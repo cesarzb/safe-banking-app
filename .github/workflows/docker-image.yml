@@ -27,17 +27,17 @@ jobs:
         run: |
           docker-compose run --rm web bin/rails test:system
 
-      - name: The job has failed
+      - name: Create work item if tests failed
         uses: stefanstranger/azuredevops-bug-action@1.1
         if: failure()
         with:
           OrganizationName: "MWO-Bernard"
           PAT: "PAT"
-          ProjectName: "Portal e-commerce"
-          AreaPath: "Portal e-commerce\\Automation"
-          IterationPath: "Portal e-commerce"
+          ProjectName: "Azure Github Pipelines"
+          AreaPath: "Azure Github Pipelines"
+          IterationPath: "Azure Github Pipelines"
           GithubToken: "GithubToken"
-          WorkflowFileName: "error.yml"
+          WorkflowFileName: "docker-image.yml"
         env:
           PAT: ${{ secrets.PAT}}
           GithubToken: ${{ secrets.githubtoken}}
