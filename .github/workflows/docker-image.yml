@@ -33,9 +33,9 @@ jobs:
         with:
           OrganizationName: "MWO-Bernard"
           PAT: "PAT"
-          ProjectName: "Azure Github Pipelines"
-          AreaPath: "Azure Github Pipelines"
-          IterationPath: "Azure Github Pipelines"
+          ProjectName: "Azure Github Pipeline"
+          AreaPath: "Azure Github Pipeline"
+          IterationPath: "Azure Github Pipeline"
           GithubToken: "GithubToken"
           WorkflowFileName: "docker-image.yml"
         env:
