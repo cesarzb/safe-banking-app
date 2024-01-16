@@ -15,9 +15,12 @@ gem "redis", "~> 4.0"
 gem "tzinfo-data"
 gem "bootsnap", require: false
 gem "dotenv"
+gem "bcrypt"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'pry'
+  gem 'pry-nav'
 end
 
 group :development do

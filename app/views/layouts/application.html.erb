@@ -11,6 +11,20 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <%= button_to 'Sign Out', logout_path, method: :delete %>
+    <% else %>
+      <% if (controller.controller_name == 'sessions' || controller.controller_name == 'users') && controller.action_name == 'new' %>
+        <div style="display: flex; gap: 1rem;">
+          <%= link_to "Home page", root_path %>
+        </div>
+      <% else %>
+        <div style="display: flex; gap: 1rem;">
+          <%= link_to "Sign in", login_path %>
+          <%= link_to "Sign up", sign_up_path %>
+        </div>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

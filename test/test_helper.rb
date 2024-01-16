@@ -9,8 +9,6 @@ class ActiveSupport::TestCase
   parallelize(workers: :number_of_processors)
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  fixtures :all
-
   Capybara.server_host = "0.0.0.0"
   Capybara.server_port = "3010"
   Capybara.app_host = "http://#{IPSocket.getaddress(Socket.gethostname)}:3010"
