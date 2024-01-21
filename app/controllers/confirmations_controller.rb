@@ -17,6 +17,7 @@ class ConfirmationsController < ApplicationController
 
     if @user.present? && @user.unconfirmed_or_reconfirming?
       if @user.confirm!
+        @user.update_columns(login_attempts: 0)
         login @user
         redirect_to root_path, notice: "Your account has been confirmed."
       else

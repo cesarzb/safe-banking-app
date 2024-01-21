@@ -12,7 +12,10 @@
 
   <body>
     <% if current_user %>
-      <%= button_to 'Sign Out', logout_path, method: :delete %>
+      <%= button_to 'Sign Out 👋', logout_path, method: :delete %>
+      <%= button_to 'Account 🧑‍🦱', account_path, method: :get %>
+      <%= button_to 'Home 🏠', root_path, method: :get %>
+      <%= button_to 'Secret info 😱', secrets_path, method: :get %>
       <div>
         <span>Your money:</span>
         <%= current_user.balance %>

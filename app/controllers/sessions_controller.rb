@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
   before_action :authenticate_user!, only: [:destroy]
 
   def create
+    # delaying log in
+    sleep(2)
     requested_user = User.find_by(email: params[:user][:email])
     @user = User.authenticate_by(email: params[:user][:email].downcase, password: params[:user][:password])
     if @user

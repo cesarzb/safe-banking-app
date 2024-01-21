@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'sensitive_datas/show'
   resources :transfers, only: %i[show index new create]
   resources :posts
 
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   resources :passwords, only: [:create, :edit, :new, :update], param: :password_reset_token
   put "account", to: "users#update"
   get "account", to: "users#edit"
+  get "secrets", to: "sensitive_data#show"
   # delete "account", to: "users#destroy"
   resources :active_sessions, only: [:destroy] do
     collection do

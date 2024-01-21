@@ -23,11 +23,10 @@ COPY . .
 RUN bundle install
 
 # Create and migrate the database
-RUN rails db:drop && rails db:create && rails db:migrate
+RUN rails db:drop && rails db:create && rails db:migrate && rails db:seed
 
+# Expose port 3000 (no need for this in development as NGINX will handle it)
+# EXPOSE 3000
 
-# Expose port 3000
-EXPOSE 3000
-
-# Start the Rails application
-CMD ["rails", "s", "-b", "0.0.0.0"]
+# Start the Rails application (command changed to use Puma instead of WEBrick)
+CMD ["bundle", "exec", "puma", "-b", "tcp://0.0.0.0:3000"]

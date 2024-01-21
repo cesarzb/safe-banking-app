@@ -1,15 +1,15 @@
+dodanie nginx - happening right now
+add random password logic - straight going to this after nginx
+dodanie numeru karty i dokumentu - maybe yes?
+szyfrowanie numeru karty i dokumentu - maybe not?
+ensure delay for passwords - done
 remove tests - done
 remove registration - done
 investigate authentication - done
 add password recovery - done
 add 16 password letters - done
-add random password logic
-ensure delay for passwords
 add login attempts counter - done
 display mailer password reset to the terminal - done
-dodanie nginx
-dodanie numeru karty i dokumentu
-szyfrowanie numeru karty i dokumentu
 dodanie tytułu do przelewu - done
 zabezpieczenie logiki przelewu - done
 
@@ -23,3 +23,6 @@ https://stevepolito.design/blog/rails-authentication-from-scratch
 
 - działanie losowego hasła (za trudne do zaimplementowania, ale ciekawe)
 https://magicofsecurity.com/partial-passwords-done-right/
+
+- ogarnianie ngninx
+https://desilva.io/posts/howto-setting-up-https-ssl-tls-with-nginx-rails

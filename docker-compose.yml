@@ -5,8 +5,14 @@ services:
       - "3000:3000"
     volumes:
       - .:/usr/src/app
-    command: rails s -b 0.0.0.0
+    environment:
+      - RAILS_ENV=development
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
     depends_on:
-      - chrome-server
-  chrome-server:
-    image: selenium/standalone-chrome:119.0
+      - web

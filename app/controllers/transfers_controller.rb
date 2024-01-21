@@ -42,7 +42,10 @@ class TransfersController < ApplicationController
         receiver.increment!(:balance, @transfer.amount) if receiver
 
         @transfer.save!
-
+        puts "\n\n\n\n\n\n\nTransfer errors!"
+        puts "#{@transfer.errors.full_messages}"
+        puts "Transfer created!"
+        puts "Transfers number: #{Transfer.all.size}\n\n\n\n\n"
         flash[:notice] = "Transfer was successfully created."
         respond_to do |format|
           format.html { redirect_to transfer_url(@transfer), status: :created }
