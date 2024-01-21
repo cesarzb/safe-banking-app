@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.is-invalid {
+  border: 1px solid red;
+}
+
+.invalid-feedback {
+  color: red;
+  font-size: 0.8em;
+}

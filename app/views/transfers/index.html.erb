@@ -2,6 +2,8 @@
 
 <h1>Transfers</h1>
 
+<%= link_to "New transfer", new_transfer_path %>
+
 <div id="transfers">
   <% @transfers.each do |transfer| %>
     <%= render transfer %>
@@ -11,4 +13,3 @@
   <% end %>
 </div>
 
-<%= link_to "New transfer", new_transfer_path %>

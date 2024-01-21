@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GithubActionTests</title>
+    <title>Now Bank app fr fr</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,6 +13,14 @@
   <body>
     <% if current_user %>
       <%= button_to 'Sign Out', logout_path, method: :delete %>
+      <div>
+        <span>Your money:</span>
+        <%= current_user.balance %>
+      </div>
+      <div>
+        <span>Your email:</span>
+        <%= current_user.email %>
+      </div>
     <% else %>
       <% if (controller.controller_name == 'sessions' || controller.controller_name == 'users') && controller.action_name == 'new' %>
         <div style="display: flex; gap: 1rem;">
@@ -21,9 +29,19 @@
       <% else %>
         <div style="display: flex; gap: 1rem;">
           <%= link_to "Sign in", login_path %>
-          <%= link_to "Sign up", sign_up_path %>
         </div>
       <% end %>
+    <% end %>
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
     <% end %>
     <%= yield %>
   </body>

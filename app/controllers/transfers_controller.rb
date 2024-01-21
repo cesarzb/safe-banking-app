@@ -4,8 +4,7 @@ class TransfersController < ApplicationController
 
   # GET /transfers or /transfers.json
   def index
-    # @transfers = Transfer.where(sender_id: current_user.id).or(Transfer.where(receiver_id: current_user.id))
-    @transfers = Transfer.includes(:sender, :receiver).all
+    @transfers = Transfer.where(sender_id: current_user.id).or(Transfer.where(receiver_id: current_user.id)).order(created_at: :desc)
   end
 
   # GET /transfers/1 or /transfers/1.json
@@ -20,20 +19,47 @@ class TransfersController < ApplicationController
   # POST /transfers or /transfers.json
   def create
     @transfer = Transfer.new(transfer_params)
-      @transfer.sender_id = current_user.id
-      @transfer.sender_code = current_user.code
+    @transfer.sender_id = current_user.id
+    @transfer.sender_code = current_user.code
     @transfer.receiver_id = User.find_by(code: params[:transfer][:receiver_code])&.id
     @transfer.receiver_code = params[:transfer][:receiver_code]
-    respond_to do |format|
-      if @transfer.save
-        format.html { redirect_to transfer_url(@transfer), notice: "Transfer was successfully created." }
-        format.json { render :show, status: :created, location: @transfer,  notice: "Transfer wasn't successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @transfer.errors, status: :unprocessable_entity }
+
+    if @transfer.amount <= 0
+      flash[:alert] = "Invalid transfer amount. Amount must be greater than 0."
+      return redirect_to new_transfer_path
+    end
+
+    if current_user.balance < @transfer.amount
+      flash[:alert] = "Insufficient funds. Transfer amount exceeds sender's balance."
+      return redirect_to new_transfer_path
+    end
+
+    ActiveRecord::Base.transaction do
+      begin
+        current_user.decrement!(:balance, @transfer.amount)
+
+        receiver = User.find_by(code: params[:transfer][:receiver_code])
+        receiver.increment!(:balance, @transfer.amount) if receiver
+
+        @transfer.save!
+
+        flash[:notice] = "Transfer was successfully created."
+        respond_to do |format|
+          format.html { redirect_to transfer_url(@transfer), status: :created }
+          format.json { render :show, status: :created, location: @transfer }
+        end
+        return
+      rescue ActiveRecord::RecordInvalid
+        raise ActiveRecord::Rollback
       end
     end
+
+    respond_to do |format|
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @transfer.errors, status: :unprocessable_entity }
+    end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

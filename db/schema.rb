@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_09_174318) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_21_122025) do
   create_table "active_sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
@@ -52,6 +52,28 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_09_174318) do
     t.string "password_digest", null: false
     t.string "unconfirmed_email"
     t.string "code"
+    t.decimal "balance", precision: 10, scale: 2, default: "0.0", null: false
+    t.integer "variation_number", default: 0
+    t.string "password_letter_1_digest", limit: 1
+    t.string "password_letter_2_digest", limit: 1
+    t.string "password_letter_3_digest", limit: 1
+    t.string "password_letter_4_digest", limit: 1
+    t.string "password_letter_5_digest", limit: 1
+    t.string "password_letter_6_digest", limit: 1
+    t.string "password_letter_7_digest", limit: 1
+    t.string "password_letter_8_digest", limit: 1
+    t.string "password_letter_9_digest", limit: 1
+    t.string "password_letter_10_digest", limit: 1
+    t.string "password_letter_11_digest", limit: 1
+    t.string "password_letter_12_digest", limit: 1
+    t.string "password_letter_13_digest", limit: 1
+    t.string "password_letter_14_digest", limit: 1
+    t.string "password_letter_15_digest", limit: 1
+    t.string "password_letter_16_digest", limit: 1
+    t.integer "login_attempts", default: 0
+    t.string "next_password"
+    t.text "encrypted_credit_card"
+    t.text "encrypted_personal_id"
     t.index ["code"], name: "index_users_on_code", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end

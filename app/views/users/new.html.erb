@@ -1,16 +1,22 @@
-<%= form_with model: @user, url: sign_up_path do |form| %>
+<%= form_with model: @user, url: sign_up_path, remote: true, data: { controller: "user-form" } do |form| %>
   <%= render partial: "shared/form_errors", locals: { object: form.object } %>
   <div>
     <%= form.label :email %>
-    <%= form.email_field :email, required: true %>
+    <%= form.email_field :email, required: true, data: { target: "user-form.email", action: "input->user-form#validateEmail" } %>
+    <div class="invalid-feedback"></div>
   </div>
+
   <div>
     <%= form.label :password %>
-    <%= form.password_field :password, required: true %>
+    <%= form.password_field :password, required: true, data: { target: "user-form.password", action: "input->user-form#validatePassword" } %>
+    <div class="invalid-feedback"></div>
   </div>
+
   <div>
     <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, required: true %>
+    <%= form.password_field :password_confirmation, required: true, data: { target: "user-form.passwordConfirmation", action: "input->user-form#validatePasswordConfirmation" } %>
+    <div class="invalid-feedback"></div>
   </div>
+
   <%= form.submit "Sign Up" %>
 <% end %>
