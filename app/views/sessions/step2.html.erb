@@ -1,0 +1,27 @@
+<h1>Step 2: Enter Password</h1>
+<%= form_tag login_password_path do %>
+  <h2>Password</h2>
+  <%= puts @password_permutation.inspect%>
+  <p>Fill in following letters of the password: <%= "#{@password_permutation[0]} #{@password_permutation[1]} #{@password_permutation[2]} #{@password_permutation[3]}" %></p>
+  <p>If your password is shorter than the numbers of characters here, just put "-" in the place of this characters.</p>
+
+  <% (1..16).each do |index| %>
+    <%= password_field_tag "password_letter_#{index}", nil, class: 'single-letter-input', maxlength: 1, disabled: !@password_permutation.include?(index) %>
+  <% end %>
+  <%= submit_tag 'Log In' %>
+<% end %>
+<%= button_to "I forgor 💀", new_password_path, method: :get %>
+
+<style>
+  /* Style to limit the input to one character */
+  .single-letter-input {
+    width: 2em; /* Adjust the width to fit your design */
+    text-align: center;
+    text-transform: uppercase; /* Display letters in uppercase */
+  }
+
+  /* Add some spacing between password fields */
+  .password-field {
+    margin-bottom: 8px;
+  }
+</style>

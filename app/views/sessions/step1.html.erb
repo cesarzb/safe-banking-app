@@ -1,0 +1,6 @@
+<h1>Step 1: Enter Email</h1>
+<%= form_tag login_path do %>
+  <%= label_tag :email, 'Email' %>
+  <%= text_field_tag :email %>
+  <%= submit_tag 'Next' %>
+<% end %>

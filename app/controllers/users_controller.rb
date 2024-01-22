@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(create_user_params)
+    random_combination = (1..16).to_a.shuffle.join('-')
+    @user.next_password = random_combination
     if @user.save
       @user.send_confirmation_email!
       redirect_to root_path, notice: "Please check your email for confirmation instructions."

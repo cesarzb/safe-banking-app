@@ -1,7 +1,8 @@
-dodanie nginx - happening right now
 add random password logic - straight going to this after nginx
-dodanie numeru karty i dokumentu - maybe yes?
+password fancy js information - done
 szyfrowanie numeru karty i dokumentu - maybe not?
+dodanie numeru karty i dokumentu - done
+dodanie nginx - done
 ensure delay for passwords - done
 remove tests - done
 remove registration - done
@@ -26,3 +27,6 @@ https://magicofsecurity.com/partial-passwords-done-right/
 
 - ogarnianie ngninx
 https://desilva.io/posts/howto-setting-up-https-ssl-tls-with-nginx-rails
+
+- has_secure_password source code
+https://github.com/rails/rails/blob/main/activemodel/lib/active_model/secure_password.rb

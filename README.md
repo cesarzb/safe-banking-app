@@ -1,3 +1,9 @@
+Jest to aplikacja do celów prezentacji,
+dlatego sekrety są załączone do repozytorium,
+aby nie trzeba było ich generować,
+w normalnej aplikacji nalezało by je ukryć
+z uzyciem .gitignore i generować je w miejscu docelowym.
+
 Aby uruchomić aplikację, nalezy uzyć komendy:
 docker-compose up
 
@@ -17,3 +23,4 @@ email: "bernard3@example.com",
 password: 'SecurePassword1@',
 code: "0000111222223333",
 }
+a

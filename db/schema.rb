@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_21_122025) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_21_211515) do
   create_table "active_sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_21_122025) do
     t.datetime "updated_at", null: false
     t.string "sender_code"
     t.string "receiver_code"
+    t.string "receiver_name", null: false
     t.index ["receiver_code"], name: "index_transfers_on_receiver_code"
     t.index ["receiver_id"], name: "index_transfers_on_receiver_id"
     t.index ["sender_code"], name: "index_transfers_on_sender_code"

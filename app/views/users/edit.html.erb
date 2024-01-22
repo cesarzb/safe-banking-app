@@ -1,4 +1,4 @@
-<%= form_with model: @user, url: account_path, method: :put do |form| %>
+<%= form_with model: @user, url: account_path, method: :put, data: { controller: "password-edit-form" } do |form| %>
   <%= render partial: "shared/form_errors", locals: { object: form.object } %>
   <div>
     <%= form.label :email, "Current Email" %>
@@ -10,12 +10,14 @@
   </div>
   <div>
     <%= form.label :password, "Password (leave blank if you don't want to change it)" %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, data: { target: "password-edit-form.password", action: "input->password-edit-form#validatePassword" }%>
   </div>
+  <div data-target="password-edit-form.strengthMessage"></div>
   <div>
     <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
+    <%= form.password_field :password_confirmation, data: { target: "password-edit-form.passwordConfirmation", action: "input->password-edit-form#validatePasswordConfirmation" } %>
   </div>
+  
   <hr/>
   <div>
     <%= form.label :current_password, "Current password (we need your current password to confirm your changes)" %>
